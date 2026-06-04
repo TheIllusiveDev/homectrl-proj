@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -97,6 +96,13 @@ public class SettingsFragment extends Fragment {
         int currentMode = androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode();
         cbTheme.setChecked(currentMode == androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
 
+        cbTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                    isChecked ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+                              : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+            );
+        });
+
         btnSave.setOnClickListener(v -> saveSettings());
 
         return view;
@@ -120,12 +126,6 @@ public class SettingsFragment extends Fragment {
         String selectedRoom = spinner.getSelectedItem().toString();
         rb = view.findViewById(rgModes.getCheckedRadioButtonId());
         String selected = rb.getText().toString();
-
-        boolean isDarkMode = cbTheme.isChecked();
-        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
-                isDarkMode ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES 
-                           : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
-        );
 
         tvRoom.setText("Room: " + selectedRoom);
         tvMode.setText("Mode: " + selected);
