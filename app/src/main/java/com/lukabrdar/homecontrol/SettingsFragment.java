@@ -174,11 +174,11 @@ public class SettingsFragment extends Fragment {
         tvRoom.setText("Room: " + selectedRoom);
         tvMode.setText("Current Mode: " + currentMode);
 
-        if (currentMode.equalsIgnoreCase("automatic")) {
+        if (currentMode.toLowerCase().contains("automatic")) {
             rgModes.check(R.id.rb_mode_automatic);
-        } else if (currentMode.equalsIgnoreCase("manual")) {
+        } else if (currentMode.toLowerCase().contains("manual")) {
             rgModes.check(R.id.rb_mode_manual);
-        } else if (currentMode.equalsIgnoreCase("eco")) {
+        } else if (currentMode.toLowerCase().contains("eco")) {
             rgModes.check(R.id.rb_mode_eco);
         }
 
