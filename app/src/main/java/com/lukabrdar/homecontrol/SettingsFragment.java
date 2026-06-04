@@ -97,6 +97,9 @@ public class SettingsFragment extends Fragment {
 
         onCreateSpinner();
 
+        int currentMode = androidx.appcompat.app.AppCompatDelegate.getDefaultNightMode();
+        cbTheme.setChecked(currentMode == androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES);
+
         btnSave.setOnClickListener(v -> saveSettings());
 
         return view;
@@ -120,9 +123,15 @@ public class SettingsFragment extends Fragment {
         rb = view.findViewById(rgModes.getCheckedRadioButtonId());
         String selected = rb.getText().toString();
 
+        boolean isDarkMode = cbTheme.isChecked();
+        androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
+                isDarkMode ? androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES 
+                           : androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+        );
+
         tvRoom.setText("Room: " + selectedRoom);
         tvMode.setText("Mode: " + selected);
-        tvTheme.setText("Dark Theme: " + (cbTheme.isChecked() ? "Enabled" : "Disabled"));
+        tvTheme.setText("Dark Theme: " + (isDarkMode ? "Enabled" : "Disabled"));
 
         card.setVisibility(View.VISIBLE);
         ivSuccess.setVisibility(View.VISIBLE);

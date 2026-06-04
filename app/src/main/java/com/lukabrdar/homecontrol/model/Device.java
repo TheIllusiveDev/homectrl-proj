@@ -21,4 +21,9 @@ public class Device {
     public void changeState() {
         this.status = !this.status;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

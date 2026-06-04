@@ -1,9 +1,6 @@
 package com.lukabrdar.homecontrol;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.lukabrdar.homecontrol.model.Device;
 
@@ -29,42 +30,18 @@ public class DevicesFragment extends Fragment {
     private Device currentDevice;
     private List<Device> devices;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
     public DevicesFragment() {
-    }
-
-    public static DevicesFragment newInstance(String param1, String param2) {
-        DevicesFragment fragment = new DevicesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     public static List<Device> getDevices() {
         return new ArrayList<Device>(Arrays.asList(
-                new Device("Svjetlo", "dnevni boravak", true, R.drawable.ic_lightbulb),
-                new Device("Klima uređaj", "dnevni boravak", false, R.drawable.ic_ac_unit),
-                new Device("Pametna brava", "ulaz", true, R.drawable.ic_lock),
-                new Device("Alarm", "cijela kuća", false, R.drawable.ic_alarm),
-                new Device("Grijanje", "dnevni boravak", true, R.drawable.ic_thermostat),
-                new Device("Kuhinjsko svjetlo", "kuhinja", false, R.drawable.ic_lightbulb),
-                new Device("Garažna vrata", "garaža", false, R.drawable.ic_garage)
+                new Device("Light", "Living Room", true, R.drawable.ic_lightbulb),
+                new Device("Air Conditioner", "Living Room", false, R.drawable.ic_ac_unit),
+                new Device("Smart Lock", "Entrance", true, R.drawable.ic_lock),
+                new Device("Alarm", "Whole House", false, R.drawable.ic_alarm),
+                new Device("Heating", "Living Room", true, R.drawable.ic_thermostat),
+                new Device("Kitchen Light", "Kitchen", false, R.drawable.ic_lightbulb),
+                new Device("Garage Door", "Garage", false, R.drawable.ic_garage)
         ));
     }
 
@@ -81,7 +58,18 @@ public class DevicesFragment extends Fragment {
         statusIcon = view.findViewById(R.id.imageViewStatusIcon);
 
         ListView listView = view.findViewById(R.id.listViewDevices);
-        ArrayAdapter<Device> adapter = new ArrayAdapter<Device>(view.getContext(), android.R.layout.simple_list_item_1, devices);
+        ArrayAdapter<Device> adapter = new ArrayAdapter<Device>(view.getContext(), R.layout.device_list_item, R.id.textViewDeviceName, devices) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                Device d = getItem(position);
+                if (d != null) {
+                    ((ImageView) v.findViewById(R.id.imageViewDeviceIcon)).setImageResource(d.iconResId);
+                }
+                return v;
+            }
+        };
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
