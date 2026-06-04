@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HomeControl</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_devices">Devices</string>
+    <string name="menu_settings">Settings</string>
+    <string name="welcome_message">Welcome to Home Control\nPress the button to continue</string>
+    <string name="button_continue">Continue</string>
+
+    <string name="devices_list_title">Popis uređaja:</string>
+    <string name="selected_device_label">Odabrani uređaj: %1$s</string>
+    <string name="status_label">Status: </string>
+    <string name="room_label">Prostorija: </string>
+    <string name="status_on">uključeno</string>
+    <string name="status_off">isključeno</string>
+</resources>
