@@ -27,6 +27,7 @@ public class DevicesFragment extends Fragment {
     private TextView statusValue;
     private TextView roomValue;
     private ImageView statusIcon;
+    private View cardViewStatus;
     private Device currentDevice;
     private List<Device> devices;
 
@@ -56,6 +57,7 @@ public class DevicesFragment extends Fragment {
         statusValue = view.findViewById(R.id.textViewStatusValue);
         roomValue = view.findViewById(R.id.textViewRoomValue);
         statusIcon = view.findViewById(R.id.imageViewStatusIcon);
+        cardViewStatus = view.findViewById(R.id.cardViewStatus);
 
         ListView listView = view.findViewById(R.id.listViewDevices);
         ArrayAdapter<Device> adapter = new ArrayAdapter<Device>(view.getContext(), R.layout.device_list_item, R.id.textViewDeviceName, devices) {
@@ -90,6 +92,7 @@ public class DevicesFragment extends Fragment {
     public boolean displayInfo(Device device) {
         if (device != null) {
             currentDevice = device;
+            cardViewStatus.setVisibility(View.VISIBLE);
 
             selectedDevice.setText(getString(R.string.selected_device_label, device.name));
             if (device.status) {
