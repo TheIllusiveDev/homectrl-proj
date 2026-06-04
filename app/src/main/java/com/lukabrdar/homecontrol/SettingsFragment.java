@@ -7,6 +7,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.google.android.material.card.MaterialCardView;
+import com.lukabrdar.homecontrol.model.Device;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +30,15 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class SettingsFragment extends Fragment {
+    private Spinner spinner;
+    private RadioGroup rgModes;
+    private CheckBox cbTheme;
+    private Button btnSave;
+    private MaterialCardView card;
+    private TextView tvRoom, tvMode, tvTheme;
+    private ImageView ivSuccess;
+    private RadioButton rb;
+    private View view;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +83,48 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        spinner = view.findViewById(R.id.spinner_rooms);
+        rgModes = view.findViewById(R.id.rg_modes);
+        cbTheme = view.findViewById(R.id.cb_theme);
+        btnSave = view.findViewById(R.id.btn_save_settings);
+        card = view.findViewById(R.id.card_summary);
+        tvRoom = view.findViewById(R.id.tv_summary_room);
+        tvMode = view.findViewById(R.id.tv_summary_mode);
+        tvTheme = view.findViewById(R.id.tv_summary_theme);
+        ivSuccess = view.findViewById(R.id.iv_success);
+
+        onCreateSpinner();
+
+        btnSave.setOnClickListener(v -> saveSettings());
+
+        return view;
+    }
+
+    private void onCreateSpinner() {
+        List<Device> devices = DevicesFragment.getDevices();
+
+        Set<String> individualRooms = new HashSet<String>();
+        for (Device device : devices) {
+            individualRooms.add(device.location);
+        }
+        List<String> rooms = new ArrayList<>(individualRooms);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, rooms);
+        spinner.setAdapter(adapter);
+    }
+
+    private void saveSettings() {
+        String selectedRoom = spinner.getSelectedItem().toString();
+        rb = view.findViewById(rgModes.getCheckedRadioButtonId());
+        String selected = rb.getText().toString();
+
+        tvRoom.setText("Room: " + selectedRoom);
+        tvMode.setText("Mode: " + selected);
+        tvTheme.setText("Dark Theme: " + (cbTheme.isChecked() ? "Enabled" : "Disabled"));
+
+        card.setVisibility(View.VISIBLE);
+        ivSuccess.setVisibility(View.VISIBLE);
     }
 }

@@ -3,6 +3,7 @@ package com.lukabrdar.homecontrol.model;
 public class Device {
     public String name;
     public String location;
+    public String operatingMode;
     public Boolean status;
     public int id;
     public int iconResId;
@@ -14,6 +15,7 @@ public class Device {
         this.status = status;
         this.iconResId = iconResId;
         this.id = counter++;
+        this.operatingMode = "automatic";
     }
 
     public void changeState() {
