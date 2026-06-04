@@ -39,7 +39,7 @@ public class DevicesFragment extends Fragment {
                 new Device("Light", "Living Room", true, R.drawable.ic_lightbulb),
                 new Device("Air Conditioner", "Living Room", false, R.drawable.ic_ac_unit),
                 new Device("Smart Lock", "Entrance", true, R.drawable.ic_lock),
-                new Device("Alarm", "House Lightning", false, R.drawable.ic_alarm),
+                new Device("Alarm", "Security system", false, R.drawable.ic_alarm),
                 new Device("Heating", "Living Room", true, R.drawable.ic_thermostat),
                 new Device("Kitchen Light", "Kitchen", false, R.drawable.ic_lightbulb),
                 new Device("Garage Door", "Garage", false, R.drawable.ic_garage)
