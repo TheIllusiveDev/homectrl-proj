@@ -1,6 +1,10 @@
 package com.lukabrdar.homecontrol;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,24 +12,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.navigation.NavigationView;
+import androidx.navigation.Navigation;
 
 public class MainActivity extends AppCompatActivity {
-
-    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.drawer_layout), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -33,32 +30,33 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        if (navHostFragment != null) {
-            NavController navController = navHostFragment.getNavController();
-
-            mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.mainFragment, R.id.devicesFragment, R.id.settingsFragment, R.id.aboutFragment)
-                    .setOpenableLayout(drawer)
-                    .build();
-
-            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-            NavigationUI.setupWithNavController(navigationView, navController);
-        }
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        if (navHostFragment != null) {
-            NavController navController = navHostFragment.getNavController();
-            return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                    || super.onSupportNavigateUp();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
+        if (id == R.id.mainFragment) {
+            navController.navigate(R.id.mainFragment);
+            return true;
+        } else if (id == R.id.devicesFragment) {
+            navController.navigate(R.id.devicesFragment);
+            return true;
+        } else if (id == R.id.settingsFragment) {
+            navController.navigate(R.id.settingsFragment);
+            return true;
+        } else if (id == R.id.aboutFragment) {
+            navController.navigate(R.id.aboutFragment);
+            return true;
+        } else {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            return false;
         }
-        return super.onSupportNavigateUp();
     }
 }
