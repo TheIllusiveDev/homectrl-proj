@@ -23,7 +23,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Device Name"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageViewArrow"
@@ -36,7 +36,7 @@
         android:layout_height="24dp"
         android:rotation="0"
         android:src="@android:drawable/ic_media_play"
-        app:tint="#BDBDBD"
+        app:tint="?attr/colorOutline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

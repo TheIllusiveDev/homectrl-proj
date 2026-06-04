@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
     android:padding="16dp"
     tools:context=".DevicesFragment">
 
@@ -13,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/devices_list_title"
-        android:textColor="#3F51B5"
+        android:textColor="?attr/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +24,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/white"
-        android:divider="#EEEEEE"
+        android:divider="?android:attr/dividerVertical"
         android:dividerHeight="1dp"
         app:layout_constraintBottom_toTopOf="@+id/cardViewStatus"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,10 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:cardBackgroundColor="@android:color/white"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
-        app:strokeColor="#E0E0E0"
+        app:strokeColor="?attr/colorOutline"
         app:strokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/selected_device_label"
-                    android:textColor="#3F51B5"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -82,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/status_label"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="14sp" />
 
                     <TextView
@@ -107,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/room_label"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="14sp" />
 
                     <TextView
@@ -116,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="-"
-                        android:textColor="@android:color/black"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -129,7 +127,8 @@
                 android:src="@drawable/ic_devices"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/colorOnSurface" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

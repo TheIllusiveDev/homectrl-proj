@@ -115,6 +115,7 @@ public class SettingsFragment extends Fragment {
         List<String> rooms = new ArrayList<>(individualRooms);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, rooms);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
