@@ -22,5 +22,6 @@
     <color name="primary_blue">#3F51B5</color>
     <color name="summary_card_bg">#E8F5E9</color>
     <color name="success_green">#2E7D32</color>
+    <color name="error_red">#D32F2F</color>
     <color name="divider_gray">#A9A9A9</color>
 </resources>

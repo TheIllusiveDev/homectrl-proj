@@ -92,7 +92,13 @@ public class DevicesFragment extends Fragment {
             currentDevice = device;
 
             selectedDevice.setText(getString(R.string.selected_device_label, device.name));
-            statusValue.setText(device.status ? getString(R.string.status_on) : getString(R.string.status_off));
+            if (device.status) {
+                statusValue.setText(getString(R.string.status_on));
+                statusValue.setTextColor(getResources().getColor(R.color.success_green, null));
+            } else {
+                statusValue.setText(getString(R.string.status_off));
+                statusValue.setTextColor(getResources().getColor(R.color.error_red, null));
+            }
             roomValue.setText(device.location);
             statusIcon.setImageResource(device.iconResId);
             return true;
