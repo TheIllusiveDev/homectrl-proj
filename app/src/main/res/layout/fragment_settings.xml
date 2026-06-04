@@ -70,26 +70,6 @@
             android:text="@string/settings_mode_eco" />
     </RadioGroup>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/divider_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rg_modes" />
-
-    <CheckBox
-        android:id="@+id/cb_theme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        android:text="@string/settings_dark_theme"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider" />
-
     <Button
         android:id="@+id/btn_save_settings"
         android:layout_width="0dp"
@@ -100,7 +80,27 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_theme" />
+        app:layout_constraintTop_toBottomOf="@id/rg_modes" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/divider_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_save_settings" />
+
+    <CheckBox
+        android:id="@+id/cb_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minHeight="48dp"
+        android:text="@string/settings_dark_theme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_summary"
@@ -115,7 +115,7 @@
         app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_save_settings">
+        app:layout_constraintTop_toBottomOf="@id/cb_theme">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -126,12 +126,12 @@
                 android:id="@+id/tv_summary_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/settings_saved_title"
                 android:textColor="@color/success_green"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/settings_saved_title" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_summary_room"
