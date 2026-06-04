@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -105,6 +106,18 @@ public class SettingsFragment extends Fragment {
 
         btnSave.setOnClickListener(v -> saveSettings());
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                displayStatus();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return view;
     }
 
@@ -129,6 +142,36 @@ public class SettingsFragment extends Fragment {
 
         tvRoom.setText("Room: " + selectedRoom);
         tvMode.setText("Mode: " + selected);
+
+        card.setVisibility(View.VISIBLE);
+    }
+
+    private void displayStatus() {
+        String selectedRoom = spinner.getSelectedItem().toString();
+        List<Device> devices = DevicesFragment.getDevices();
+        String currentMode = "automatic";
+        for (Device device : devices) {
+            if (device.location.equals(selectedRoom)) {
+                currentMode = device.operatingMode;
+                break;
+            }
+        }
+
+        tvRoom.setText("Room: " + selectedRoom);
+        tvMode.setText("Current Mode: " + currentMode);
+
+        if (currentMode.equalsIgnoreCase("automatic")) {
+            rgModes.check(R.id.rb_mode_automatic);
+        } else if (currentMode.equalsIgnoreCase("manual")) {
+            rgModes.check(R.id.rb_mode_manual);
+        } else if (currentMode.equalsIgnoreCase("eco")) {
+            rgModes.check(R.id.rb_mode_eco);
+        }
+
+        TextView tvTitle = view.findViewById(R.id.tv_summary_title);
+        tvTitle.setText("Current Status");
+        tvTitle.setTextColor(getResources().getColor(android.R.color.darker_gray, null));
+
 
         card.setVisibility(View.VISIBLE);
     }
