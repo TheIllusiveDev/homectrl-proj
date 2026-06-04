@@ -149,32 +149,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="?attr/colorOnSurface"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_summary_room"
                 tools:text="Mode: Eco Mode" />
-
-            <TextView
-                android:id="@+id/tv_summary_theme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="?attr/colorOnSurface"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_summary_mode"
-                tools:text="Dark Theme: disabled" />
-
-            <ImageView
-                android:id="@+id/iv_success"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@android:drawable/checkbox_on_background"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/success_green"
-                android:contentDescription="@string/success_icon_desc"
-                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

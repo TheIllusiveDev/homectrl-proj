@@ -35,8 +35,7 @@ public class SettingsFragment extends Fragment {
     private CheckBox cbTheme;
     private Button btnSave;
     private MaterialCardView card;
-    private TextView tvRoom, tvMode, tvTheme;
-    private ImageView ivSuccess;
+    private TextView tvRoom, tvMode;
     private RadioButton rb;
     private View view;
 
@@ -92,8 +91,6 @@ public class SettingsFragment extends Fragment {
         card = view.findViewById(R.id.card_summary);
         tvRoom = view.findViewById(R.id.tv_summary_room);
         tvMode = view.findViewById(R.id.tv_summary_mode);
-        tvTheme = view.findViewById(R.id.tv_summary_theme);
-        ivSuccess = view.findViewById(R.id.iv_success);
 
         onCreateSpinner();
 
@@ -132,9 +129,7 @@ public class SettingsFragment extends Fragment {
 
         tvRoom.setText("Room: " + selectedRoom);
         tvMode.setText("Mode: " + selected);
-        tvTheme.setText("Dark Theme: " + (isDarkMode ? "Enabled" : "Disabled"));
 
         card.setVisibility(View.VISIBLE);
-        ivSuccess.setVisibility(View.VISIBLE);
     }
 }
