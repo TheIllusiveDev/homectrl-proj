@@ -29,21 +29,24 @@ public class DevicesFragment extends Fragment {
     private ImageView statusIcon;
     private View cardViewStatus;
     private Device currentDevice;
-    private List<Device> devices;
+    private static List<Device> devices;
 
     public DevicesFragment() {
     }
 
     public static List<Device> getDevices() {
-        return new ArrayList<Device>(Arrays.asList(
-                new Device("Light", "Living Room", true, R.drawable.ic_lightbulb),
-                new Device("Air Conditioner", "Living Room", false, R.drawable.ic_ac_unit),
-                new Device("Smart Lock", "Entrance", true, R.drawable.ic_lock),
-                new Device("Alarm", "Security system (whole house)", false, R.drawable.ic_alarm),
-                new Device("Heating", "Living Room", true, R.drawable.ic_thermostat),
-                new Device("Kitchen Light", "Kitchen", false, R.drawable.ic_lightbulb),
-                new Device("Garage Door", "Garage", false, R.drawable.ic_garage)
-        ));
+        if (devices == null) {
+            devices = new ArrayList<>(Arrays.asList(
+                    new Device("Light", "Living Room", true, R.drawable.ic_lightbulb),
+                    new Device("Air Conditioner", "Living Room", false, R.drawable.ic_ac_unit),
+                    new Device("Smart Lock", "Entrance", true, R.drawable.ic_lock),
+                    new Device("Alarm", "Security system (whole house)", false, R.drawable.ic_alarm),
+                    new Device("Heating", "Living Room", true, R.drawable.ic_thermostat),
+                    new Device("Kitchen Light", "Kitchen", false, R.drawable.ic_lightbulb),
+                    new Device("Garage Door", "Garage", false, R.drawable.ic_garage)
+            ));
+        }
+        return devices;
     }
 
     @Override

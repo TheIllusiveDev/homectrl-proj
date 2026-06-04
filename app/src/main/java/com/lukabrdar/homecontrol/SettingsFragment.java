@@ -137,11 +137,25 @@ public class SettingsFragment extends Fragment {
 
     private void saveSettings() {
         String selectedRoom = spinner.getSelectedItem().toString();
-        rb = view.findViewById(rgModes.getCheckedRadioButtonId());
+        int checkedId = rgModes.getCheckedRadioButtonId();
+        if (checkedId == -1) return;
+        
+        rb = view.findViewById(checkedId);
         String selected = rb.getText().toString();
+
+        List<Device> devices = DevicesFragment.getDevices();
+        for (Device device : devices) {
+            if (device.location.equals(selectedRoom)) {
+                device.operatingMode = selected;
+            }
+        }
 
         tvRoom.setText("Room: " + selectedRoom);
         tvMode.setText("Mode: " + selected);
+
+        TextView tvTitle = view.findViewById(R.id.tv_summary_title);
+        tvTitle.setText(R.string.settings_saved_title);
+        tvTitle.setTextColor(getResources().getColor(R.color.success_green, null));
 
         card.setVisibility(View.VISIBLE);
     }
