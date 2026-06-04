@@ -15,6 +15,10 @@
     <string name="room_label">Room: </string>
     <string name="status_on">on</string>
     <string name="status_off">off</string>
+    <string name="status_open">open</string>
+    <string name="status_closed">closed</string>
+    <string name="status_locked">locked</string>
+    <string name="status_unlocked">unlocked</string>
 
     <string name="settings_title">Settings</string>
     <string name="settings_select_room">Select room:</string>

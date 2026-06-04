@@ -95,13 +95,33 @@ public class DevicesFragment extends Fragment {
             cardViewStatus.setVisibility(View.VISIBLE);
 
             selectedDevice.setText(getString(R.string.selected_device_label, device.name));
+            
+            String statusText;
+            int color;
+            
             if (device.status) {
-                statusValue.setText(getString(R.string.status_on));
-                statusValue.setTextColor(getResources().getColor(R.color.success_green, null));
+                color = getResources().getColor(R.color.success_green, null);
+                if (device.name.equalsIgnoreCase("Garage Door")) {
+                    statusText = getString(R.string.status_open);
+                } else if (device.name.equalsIgnoreCase("Smart Lock")) {
+                    statusText = getString(R.string.status_unlocked);
+                } else {
+                    statusText = getString(R.string.status_on);
+                }
             } else {
-                statusValue.setText(getString(R.string.status_off));
-                statusValue.setTextColor(getResources().getColor(R.color.error_red, null));
+                color = getResources().getColor(R.color.error_red, null);
+                if (device.name.equalsIgnoreCase("Garage Door")) {
+                    statusText = getString(R.string.status_closed);
+                } else if (device.name.equalsIgnoreCase("Smart Lock")) {
+                    statusText = getString(R.string.status_locked);
+                } else {
+                    statusText = getString(R.string.status_off);
+                }
             }
+            
+            statusValue.setText(statusText);
+            statusValue.setTextColor(color);
+
             roomValue.setText(device.location);
             statusIcon.setImageResource(device.iconResId);
             return true;
